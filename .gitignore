@@ -3,5 +3,3 @@ node_modules
 .DS_Store
 node_modules
 public/css/*
-**/node_modules
-public/*
