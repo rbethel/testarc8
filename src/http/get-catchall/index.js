@@ -1,18 +1,18 @@
 const arc = require("@architect/functions");
 
 async function adminCheck(req) {
-    console.log("in admincheck");
+    console.log("in admincheck handler");
+    console.log("Catchall Called from:", req.rawPath);
     if (req.rawPath.endsWith("/admin")) {
-        console.log("--- admin Check Request ---", req);
+        //this branch does not return anything so execution should continue in the next function
+        //If it returned the request here it should also continue but it does not
     } else {
-        console.log("--- regular page Request ---", req);
-        return { status: 200, body: "a regular request (not admin)" };
+        return { status: 200, body: "This is a regular page (not admin)" };
     }
 }
 async function adminPage(req) {
-    console.log("--- admin page Request ---", req);
-    console.log(req);
-    return { status: 200, body: "in admin page" };
+    console.log("in the adminPage handler");
+    return { status: 200, body: "This is an Admin Page" };
 }
 
 exports.handler = arc.http.async(adminCheck, adminPage);
